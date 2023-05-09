@@ -16,56 +16,50 @@
 :dataset
     a rb:Dataset, dcat:Dataset ;
     dcterms:conformsTo <https://w3id.org/riverbench/schema/metadata> ;
-    dcterms:identifier "[YOUR DATASET ID (only a-z, 0-9, -)]" ;
+    dcterms:identifier "dbpedia-live" ;
 
-    dcterms:title "[HUMAN-READABLE NAME OF YOUR DATASET]"@en ;
-    dcterms:description "[ELABORATED DESCRIPTION OF THE DATASET]"@en ;
-    dcterms:issued "[DATE OF INITIAL SUBMISSION, YYYY-MM-DD]"^^xsd:date ;
+    dcterms:title "DBpedia Live"@en ;
+    dcterms:description "[DBpedia Live](https://www.dbpedia.org/resources/live/) was a real-time service that monitored edits on Wikipedia and published a stream of changes to the DBpedia knowledge graph. This dataset contains only the \"added\" triples in the stream, so it does not include deletes or other types of changes. Only one month (January 2014) is covered at the moment, but the dataset can be easily expanded in the future (the service stopped functioning in 2021). The stream's elements are irregular in size, depending on the volume of traffic on Wikipedia at a given moment and how the DBpedia Live service was able to cope with it. See also the [paper](http://jens-lehmann.org/files/2012/program_el_dbpedia_live.pdf)."@en ;
+    dcterms:issued "2023-05-09"^^xsd:date ;
 
     # License and attribution
-    # SPDX license list: https://spdx.org/licenses/
-    # Do not include ".html" at the end of the SPDX license URL
-    # Example of a valid URL: https://spdx.org/licenses/CC-BY-4.0
-    dcterms:license <SPDX-LICENSE-URL> ;
-    dcterms:rights "[ADDITIONAL LICENSING NOTES, IF NEEDED]"@en ;
-    # Feel free to add more creators or use any FOAF properties here
+    dcterms:license <https://spdx.org/licenses/CC-BY-SA-3.0> ;
+    dcterms:rights "The dataset contains attributions of the original source of the data (links to Wikipedia)."@en ;
     dcterms:creator [
-        foaf:name "[YOUR NAME]" ;
-        foaf:nick "[YOUR NICK]" ;
-        foaf:homepage <LINK-TO-YOUR-PAGE> ;
-        # Optional: use this property to order creators in the generated docs
+        foaf:name "Wikipedia contributors" ;
+        foaf:homepage <https://www.wikipedia.org/> ;
         rbdoc:hasDocWeight 1 ;
+    ] , [
+        foaf:name "DBpedia Association" ;
+        foaf:homepage <https://www.dbpedia.org/contact/> ;
+        rbdoc:hasDocWeight 2 ;
+    ] , [
+        foaf:name "Piotr Sowiński" ;
+        foaf:nick "Ostrzyciel" ;
+        rdfs:comment "Processing the dataset" ;
+        foaf:homepage <https://github.com/Ostrzyciel>, <https://orcid.org/0000-0002-2543-9461> ;
+        rbdoc:hasDocWeight 2 ;
     ] ;
-    # If applicable, add a link to the original source of the dataset
-    dcterms:source <LINK-TO-SOURCE> ;
+    dcterms:source 
+        <https://www.dbpedia.org/resources/live/> ,
+        <https://doi.org/10.1108/00330331211221828>
+    ;
     
     # Themes
-    # Full list of themes: https://w3id.org/riverbench/schema/theme
-    dcat:theme <ADD-AT-LEAST-ONE-THEME> ;
+    dcat:theme rbt:temporal, rbt:encyclopedic ;
 
     # Technical metadata
-    # URIs of the ontologies used in the dataset
-    rb:usesOntology <ADD-ONTOLOGY-URIS> ;
-    # Set to number of stream elements in the dataset
-    rb:hasStreamElementCount -1 ;
-    # One of: rb:triples, rb:quads, rb:graphs
-    rb:hasStreamElementType <STREAM-ELEMENT-TYPE> ;
+    rb:usesOntology <http://dbpedia.org/ontology/> ;
+    rb:hasStreamElementCount 166203 ;
+    rb:hasStreamElementType rb:triples ;
     rb:hasStreamElementSplit [
-        # At least one of: rb:StatementCountStreamElementSplit,
-        #   rb:TimeStreamElementSplit, rb:TopicStreamElementSplit
-        a <SPLIT-TYPE> ;
-        # If your dataset is split by time, specify the temporal property:
-        # rb:hasTemporalProperty <PROPERTY-IRI> ;
-        rdfs:comment "[FURTHER EXPLANATION ON THE SPLIT]"@en
+        a rb:TimeStreamElementSplit ;
+        rb:hasTemporalProperty <http://dbpedia.org/ontology/wikiPageExtracted> ;
+        rdfs:comment "Each element corresponds to a batch of recent changes from Wikipedia. The size of the batch may have been influenced by the traffic on Wikipedia, the load on the system, and other factors, so the element sizes are irregular."@en
     ] ;
-    rb:conformsToRdf11 "" ; # true or false
-    rb:conformsToRdfStarDraft_20211217 "" ; # true or false
-    rb:usesGeneralizedRdfDatasets "" ; # true or false
-    rb:usesGeneralizedTriples "" ; # true or false
-    rb:usesRdfStar "" ; # true or false
-    
-    # Add any additional metadata here
-    # Examples of useful properties:
-    # dcat:temporalResolution, dcat:spatialResolutionInMeters,
-    # dcterms:language
+    rb:conformsToRdf11 true ;
+    rb:conformsToRdfStarDraft_20211217 true ;
+    rb:usesGeneralizedRdfDatasets false ;
+    rb:usesGeneralizedTriples false ;
+    rb:usesRdfStar false ;
 .
