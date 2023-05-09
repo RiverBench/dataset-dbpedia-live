@@ -50,7 +50,7 @@
 
     # Technical metadata
     rb:usesOntology <http://dbpedia.org/ontology/> ;
-    rb:hasStreamElementCount 166203 ;
+    rb:hasStreamElementCount 166204 ;
     rb:hasStreamElementType rb:triples ;
     rb:hasStreamElementSplit [
         a rb:TimeStreamElementSplit ;
