@@ -49,7 +49,10 @@ The dataset was extensively cleaned to fix or remove bad IRIs, bad Unicode, and 
     ;
     
     # Themes
-    dcat:theme rbt:temporal, rbt:encyclopedic ;
+    dcat:theme
+        eurovoc:4137, # encyclopedia
+        eurovoc:c_5ea6e5c4 # open data
+    ;
 
     # Technical metadata
     rb:usesOntology <http://dbpedia.org/ontology/> ;
